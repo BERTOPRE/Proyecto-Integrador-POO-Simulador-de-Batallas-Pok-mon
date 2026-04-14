@@ -1,8 +1,11 @@
 
 class Pokemon:
-    def __init__(self, hp_actual, ep_actual):
+    def __init__(self, nombre, tipo_pokemon, hp_actual, ep_actual ):
+        self.nombre = nombre
+        self.tipo_pokemon = tipo_pokemon
         self.__hp_actual = hp_actual
         self.__ep_actual = ep_actual
+        
         
     @property
     def hp_actual(self):
@@ -19,3 +22,5 @@ class Pokemon:
     
     def ep_actual(self, nuevo_ep):
         self.__ep_actual = nuevo_ep
+        
+        
