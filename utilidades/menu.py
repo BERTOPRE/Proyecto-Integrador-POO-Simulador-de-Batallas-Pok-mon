@@ -1,0 +1,2 @@
+
+print("BIENVENIDO AL JUEGO DE POKÉMON")
