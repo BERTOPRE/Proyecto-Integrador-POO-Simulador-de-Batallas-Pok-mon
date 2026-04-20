@@ -18,8 +18,8 @@ class Pokemon:
     @property
     def ep_actual(self):
         return self.__ep_actual
-    @ep_actual.setter
     
+    @ep_actual.setter    
     def ep_actual(self, nuevo_ep):
         self.__ep_actual = nuevo_ep
         

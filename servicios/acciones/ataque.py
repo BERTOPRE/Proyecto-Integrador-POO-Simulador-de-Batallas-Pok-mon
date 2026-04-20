@@ -6,4 +6,4 @@ from datos.reglas_acciones import ACCIONES
 class Ataque:
     def __init__(self, pokemon:Pokemon, daño:int = ACCIONES["ataque"]):
         pokemon.hp_actual += daño
-        pass
+        
