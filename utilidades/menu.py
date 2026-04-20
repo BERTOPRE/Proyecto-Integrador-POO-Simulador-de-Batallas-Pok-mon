@@ -1,16 +1,32 @@
 class Menu:
-    def mostrar_menu(self):
+
+    @classmethod
+    def mostrar_menu(cls):
+        print("==========================================")
+        print("SIMULADOR DE BATALLAS POKÉMON (POO)")
+        print("==========================================")
+        
         while True:
-            print("==========================================")
-            print("SIMULADOR DE BATALLAS POKÉMON (POO)")
-            print("==========================================")
-            print("1. Seleccione el modo de juego")
-            print("2. Jugador vs Jugador")
-            print("3. Jugador vs Computadora")
-            print("4. Salir")
+            print("Seleccione el modo de juego")
+            print("1. Jugador vs Jugador")
+            print("2. Jugador vs Computadora")
+            print("3. Salir")
             
             try:
                 opcion = int(input("Ingresa una opción: "))
-                return opcion
+                
+                match opcion:
+                    case 1:
+                        print("Seleccionó la opción 1")
+                        break
+                    case 2: 
+                        print("Seleccionó la opción 2")
+                        break
+                    case 3: 
+                        print("Gracias por jugar")
+                        break
+                    case _:
+                        print("Opción inválida\n")
+                        
             except ValueError:
-                print("Opción inválida, intenta de nuevo\n")
+                print("Opción inválida, debe ser un número\n")

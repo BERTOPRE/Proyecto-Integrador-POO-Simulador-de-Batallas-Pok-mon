@@ -2,6 +2,10 @@ from modelos.jugador import Jugador
 from modelos.pokemon_electrico import PokemonElectrico
 from modelos.pokemon_agua import PokemonAgua
 from utilidades.determinar_inicio_combate import DeterminarInicioCombate
+from utilidades.menu_pokedex import MenuPokedex
+from utilidades.menu import Menu
+from datos.pokedex import CATALOGO_POKEMON
+from servicios.pokemon.crear_pokemon import CrearPokemon
 
 
 
@@ -10,12 +14,10 @@ def main():
     print("El programa ha iniciado")
     # Lógica principal aquí
     
-    pokemon_jugador_uno = PokemonElectrico("Pikachu", 100, 50)    
-    jugador_uno = Jugador(pokemon_jugador_uno, "Luis Miguel")
-    
-    pokemon_jugador_dos = PokemonAgua("Totodile", 100, 50)
-    jugador_dos = Jugador(pokemon_jugador_dos, "Luis Angel")
-    
-    print(DeterminarInicioCombate.determinar_inicio_combate(jugador_uno, jugador_dos))
+    pokemon = CATALOGO_POKEMON["1"]
+    seleccion_pokemon = str(input("Seleccione un pokemon: "))
+    PokemonNuevo = CrearPokemon.nuevoPokemon(seleccion_pokemon)
+    print(PokemonNuevo.nombre)
+
 if __name__ == "__main__":
     main()

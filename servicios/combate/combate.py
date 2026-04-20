@@ -1,5 +1,5 @@
 from modelos.jugador import jugador
-class JugadorVsJugador:
+class Combate:
     def __init__(self, jugador_principal:jugador, jugador_secundario:jugador):
         self.__jugador_principal = jugador_principal
         self.__jugador_secundario = jugador_secundario
@@ -12,4 +12,3 @@ class JugadorVsJugador:
     @property
     def jugador_secundario(self):
         return self.__jugador_secundario
-        

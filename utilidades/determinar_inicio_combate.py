@@ -9,5 +9,5 @@ class DeterminarInicioCombate:
         cls.lista_jugadores.append(jugador_uno)
         cls.lista_jugadores.append(jugador_dos)
         jugador_seleccionado = random.choice(cls.lista_jugadores)
-        return jugador_seleccionado.nombre_jugador
+        return jugador_seleccionado
         
