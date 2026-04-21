@@ -3,11 +3,8 @@ from modelos.jugador import Jugador
 import random
 
 class DeterminarInicioCombate:
-    lista_jugadores = []
     @classmethod
     def determinar_inicio_combate(cls, jugador_uno:Jugador, jugador_dos:Jugador):
-        cls.lista_jugadores.append(jugador_uno)
-        cls.lista_jugadores.append(jugador_dos)
-        jugador_seleccionado = random.choice(cls.lista_jugadores)
+        jugador_seleccionado = random.choice([jugador_uno, jugador_dos])
         return jugador_seleccionado
         

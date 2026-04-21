@@ -17,14 +17,14 @@ class Menu:
                 
                 match opcion:
                     case 1:
-                        print("Seleccionó la opción 1")
-                        break
+                        print("BIENVENIDO A LA BATALLA POKÉMON")
+                        return opcion
                     case 2: 
-                        print("Seleccionó la opción 2")
-                        break
+                        print("BIENVENIDO A LA BATALLA CONTRA LA COMPUTADORA")
+                        return opcion
                     case 3: 
                         print("Gracias por jugar")
-                        break
+                        return opcion
                     case _:
                         print("Opción inválida\n")
                         
