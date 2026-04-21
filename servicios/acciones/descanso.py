@@ -1,20 +1,22 @@
-
 from modelos.pokemon import Pokemon
 from datos.reglas_acciones import ACCIONES
 #En este servicio defino como funciona el descanso en un turno 
 class Descanso:
     def __init__(self, pokemon:Pokemon):
-        self.validacion_hp(pokemon)
+        self.resultado = self.recuperar_energia(pokemon)
         
     
-    def validacion_hp(self, pokemon:Pokemon):
-        if pokemon.hp_actual >= 100:
-            return f"No se puede aumentar la salud del pokemon, ya se encuentra con {pokemon.hp_actual}"
+    def recuperar_energia(self, pokemon:Pokemon):
+        if pokemon.energia_actual >= pokemon.energia_maxima:
+            return {
+                "exito": False,
+                "mensaje": f"{pokemon.nombre} ya tiene la energia al maximo."
+            }
 
-        pokemon.hp_actual += ACCIONES["descanso"]
+        pokemon.recuperar_energia(ACCIONES["descanso"])
 
-        if pokemon.hp_actual > 100:
-            pokemon.hp_actual = 100
-
-        return f"HP aumentando a {pokemon.hp_actual}"
+        return {
+            "exito": True,
+            "mensaje": f"{pokemon.nombre} recupero energia y ahora tiene {pokemon.energia_actual}/{pokemon.energia_maxima} EP."
+        }
         

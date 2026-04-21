@@ -23,14 +23,17 @@ class JugadorVsComputadora(JugadorVsJugador):
         print(f"\nTurno de {self.jugador_actual.nombre_jugador}")
 
         opcion = random.choice(["1", "2", "3"])
+        print(f"La computadora eligio la opcion {opcion}.")
 
         if opcion == "1":
-            Ataque(self.jugador_rival.pokemon)
-            self.limitar_hp_minimo(self.jugador_rival)
-            print(f"{self.jugador_actual.pokemon.nombre} ataco a {self.jugador_rival.pokemon.nombre}")
+            accion = Ataque(self.jugador_actual.pokemon, self.jugador_rival.pokemon)
+            print(accion.resultado["mensaje"])
+
+            if self.jugador_rival.pokemon.turnos_paralizado > 0:
+                print(f"{self.jugador_rival.pokemon.nombre} quedo paralizado.")
         elif opcion == "2":
-            Defensa(self.jugador_actual.pokemon)
-            print(f"{self.jugador_actual.pokemon.nombre} se defendio")
+            accion = Defensa(self.jugador_actual.pokemon)
+            print(accion.resultado["mensaje"])
         elif opcion == "3":
-            Descanso(self.jugador_actual.pokemon)
-            print(f"{self.jugador_actual.pokemon.nombre} descanso")
+            accion = Descanso(self.jugador_actual.pokemon)
+            print(accion.resultado["mensaje"])

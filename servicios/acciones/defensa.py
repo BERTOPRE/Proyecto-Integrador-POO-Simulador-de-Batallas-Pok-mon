@@ -1,8 +1,21 @@
-
 from modelos.pokemon import Pokemon
+from datos.reglas_acciones import ACCIONES
 
 #En este servicio defino como funciona el descanso en un turno 
 class Defensa:
     def __init__(self, pokemon:Pokemon):
-        pokemon.hp_actual -= 0 #TODO:: ESTO ES PROVISIONAL YA QUE EN ALGUN MOMENTO PUEDE QUE CAMBIE LA MANERA EN LA QUE LOS ATAQUES PUEDAN HACER DAÑO SI EN UN FUTURO SE TIENE DAÑO AUNQUE ESTE EN DEFENSA
+        self.resultado = self.ejecutar(pokemon)
+
+    def ejecutar(self, pokemon: Pokemon):
+        if not pokemon.consumir_energia(ACCIONES["defensa"]):
+            return {
+                "exito": False,
+                "mensaje": f"{pokemon.nombre} no tiene suficiente energia para defenderse."
+            }
+
+        pokemon.activar_defensa()
+        return {
+            "exito": True,
+            "mensaje": f"{pokemon.nombre} activo su defensa y reducira a la mitad el proximo ataque recibido."
+        }
         

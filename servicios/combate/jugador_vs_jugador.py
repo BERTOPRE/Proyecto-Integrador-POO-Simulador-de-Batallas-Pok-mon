@@ -22,7 +22,10 @@ class JugadorVsJugador:
 
         while self.esta_vivo(self.jugador_principal) and self.esta_vivo(self.jugador_secundario):
             self.mostrar_estado()
-            self.ejecutar_turno()
+            if self.jugador_actual.pokemon.puede_actuar():
+                self.ejecutar_turno()
+            else:
+                print(f"{self.jugador_actual.pokemon.nombre} esta paralizado y pierde su turno.")
 
             if self.esta_vivo(self.jugador_principal) and self.esta_vivo(self.jugador_secundario):
                 self.cambiar_turno()
@@ -38,15 +41,17 @@ class JugadorVsJugador:
         opcion = input("Seleccione una accion: ")
 
         if opcion == "1":
-            Ataque(self.jugador_rival.pokemon)
-            self.limitar_hp_minimo(self.jugador_rival)
-            print(f"{self.jugador_actual.pokemon.nombre} ataco a {self.jugador_rival.pokemon.nombre}")
+            accion = Ataque(self.jugador_actual.pokemon, self.jugador_rival.pokemon)
+            print(accion.resultado["mensaje"])
+
+            if self.jugador_rival.pokemon.turnos_paralizado > 0:
+                print(f"{self.jugador_rival.pokemon.nombre} quedo paralizado.")
         elif opcion == "2":
-            Defensa(self.jugador_actual.pokemon)
-            print(f"{self.jugador_actual.pokemon.nombre} se defendio")
+            accion = Defensa(self.jugador_actual.pokemon)
+            print(accion.resultado["mensaje"])
         elif opcion == "3":
-            Descanso(self.jugador_actual.pokemon)
-            print(f"{self.jugador_actual.pokemon.nombre} descanso")
+            accion = Descanso(self.jugador_actual.pokemon)
+            print(accion.resultado["mensaje"])
         else:
             print("Opcion invalida. Pierdes el turno.")
             
@@ -62,21 +67,19 @@ class JugadorVsJugador:
     def esta_vivo(self, jugador: Jugador):
         return jugador.pokemon.hp_actual > 0
 
-    def limitar_hp_minimo(self, jugador: Jugador):
-        if jugador.pokemon.hp_actual < 0:
-            jugador.pokemon.hp_actual = 0
-
     def mostrar_estado(self):
         print("\nEstado actual:")
         print(
             f"{self.jugador_principal.nombre_jugador} - "
             f"{self.jugador_principal.pokemon.nombre}: "
-            f"{self.jugador_principal.pokemon.hp_actual} HP"
+            f"{self.jugador_principal.pokemon.hp_actual}/{self.jugador_principal.pokemon.hp_maximo} HP | "
+            f"{self.jugador_principal.pokemon.energia_actual}/{self.jugador_principal.pokemon.energia_maxima} EP"
         )
         print(
             f"{self.jugador_secundario.nombre_jugador} - "
             f"{self.jugador_secundario.pokemon.nombre}: "
-            f"{self.jugador_secundario.pokemon.hp_actual} HP"
+            f"{self.jugador_secundario.pokemon.hp_actual}/{self.jugador_secundario.pokemon.hp_maximo} HP | "
+            f"{self.jugador_secundario.pokemon.energia_actual}/{self.jugador_secundario.pokemon.energia_maxima} EP"
         )
 
     def mostrar_ganador(self):
