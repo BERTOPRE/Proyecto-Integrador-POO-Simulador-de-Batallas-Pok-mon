@@ -1,10 +1,4 @@
-# ====================================================================
-# ARCHIVO PROVISTO POR EL PROFESOR: pokedex.py
-# ====================================================================
-# Este archivo simula una base de datos. Contiene la información en crudo
-# de los Pokémon disponibles. Usted debe importar este catálogo en su main.py
-# y utilizar estos datos para instanciar sus objetos.
-# ====================================================================
+# Este archivo funciona como una pequeña base de datos del juego.
 
 CATALOGO_POKEMON = {
     "1": {"tipo": "Fuego", "nombre": "Charmander", "hp_maximo": 100, "energia_maxima": 50},
@@ -17,15 +11,14 @@ CATALOGO_POKEMON = {
     "8": {"tipo": "Electrico", "nombre": "Magnemite", "hp_maximo": 75, "energia_maxima": 80}
 }
 
+
 def mostrar_catalogo_disponible():
-    """
-    Imprime en la consola el catálogo de Pokémon disponibles de forma tabulada.
-    """
-    print("\n" + "="*45)
-    print("         CATÁLOGO POKÉMON OFICIAL")
-    print("="*45)
-    
+    # Muestra en pantalla todos los Pokemon que se pueden elegir.
+    print("\n" + "=" * 45)
+    print("         CATALOGO POKEMON OFICIAL")
+    print("=" * 45)
+
     for clave, datos in CATALOGO_POKEMON.items():
         print(f"[{clave}] {datos['nombre']} | Tipo: {datos['tipo']} | HP: {datos['hp_maximo']} | EP: {datos['energia_maxima']}")
-    
-    print("="*45 + "\n")
+
+    print("=" * 45 + "\n")

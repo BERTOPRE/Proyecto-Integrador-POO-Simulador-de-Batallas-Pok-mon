@@ -8,6 +8,7 @@ from servicios.acciones.defensa import Defensa
 class JugadorVsJugador:
 
     def __init__(self, jugador_principal: Jugador, jugador_secundario: Jugador):
+        # Guarda a los jugadores y decide quien inicia.
         self.jugador_principal = jugador_principal
         self.jugador_secundario = jugador_secundario
         self.jugador_actual = DeterminarInicioCombate.determinar_inicio_combate(
@@ -17,6 +18,7 @@ class JugadorVsJugador:
         self.jugador_rival = self.obtener_jugador_rival(self.jugador_actual)
 
     def iniciar_combate(self):
+        # El combate sigue hasta que uno de los dos Pokemon se debilita.
         print("Inicia el combate")
         print(f"Primer turno: {self.jugador_actual.nombre_jugador}")
 
@@ -33,6 +35,7 @@ class JugadorVsJugador:
         self.mostrar_ganador()
 
     def ejecutar_turno(self):
+        # Muestra las acciones disponibles para el jugador actual.
         print(f"\nTurno de {self.jugador_actual.nombre_jugador}")
         print("1. Atacar")
         print("2. Defender")
@@ -54,12 +57,13 @@ class JugadorVsJugador:
             print(accion.resultado["mensaje"])
         else:
             print("Opcion invalida. Pierdes el turno.")
-            
-            #aquí python me permite cambiar dos variables en una sola línea
+
     def cambiar_turno(self):
+        # Cambia el turno entre el jugador actual y su rival.
         self.jugador_actual, self.jugador_rival = self.jugador_rival, self.jugador_actual
 
     def obtener_jugador_rival(self, jugador: Jugador):
+        # Devuelve al oponente del jugador recibido.
         if jugador == self.jugador_principal:
             return self.jugador_secundario
         return self.jugador_principal
@@ -83,6 +87,7 @@ class JugadorVsJugador:
         )
 
     def mostrar_ganador(self):
+        # El ganador es quien termina con HP mayor que cero.
         if self.esta_vivo(self.jugador_principal):
             ganador = self.jugador_principal
         else:

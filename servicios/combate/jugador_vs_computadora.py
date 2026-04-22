@@ -6,7 +6,8 @@ from servicios.acciones.descanso import Descanso
 from servicios.acciones.defensa import Defensa
 from servicios.combate.jugador_vs_jugador import JugadorVsJugador
 
-#aquí heredo el jugador vs jugador, pero en este caso la computadora elegirá aleatoriamente con randmo.choice
+
+# Reutiliza el combate normal y cambia solo el turno de la computadora.
 class JugadorVsComputadora(JugadorVsJugador):
 
     def __init__(self, jugador_principal: Jugador, computadora: Jugador):
@@ -14,12 +15,14 @@ class JugadorVsComputadora(JugadorVsJugador):
         self.computadora = computadora
 
     def ejecutar_turno(self):
+        # Si juega la computadora, usa su logica automatica.
         if self.jugador_actual == self.computadora:
             self.ejecutar_turno_computadora()
         else:
             super().ejecutar_turno()
 
     def ejecutar_turno_computadora(self):
+        # La computadora elige una accion al azar.
         print(f"\nTurno de {self.jugador_actual.nombre_jugador}")
 
         opcion = random.choice(["1", "2", "3"])

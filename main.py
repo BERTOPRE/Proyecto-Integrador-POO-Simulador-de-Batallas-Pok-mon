@@ -9,6 +9,7 @@ from utilidades.menu import Menu
 
 
 def seleccionar_pokemon(nombre_jugador):
+    # Pide una opcion hasta que el jugador elija un Pokemon valido.
     while True:
         seleccion_pokemon = input(f"{nombre_jugador}, seleccione un pokemon: ")
 
@@ -19,13 +20,14 @@ def seleccionar_pokemon(nombre_jugador):
 
 
 def seleccionar_pokemon_computadora():
-    #esto me sirve para que en randmo obtener los indices del catálogo, despues se convierte en lista para que choice escoja uno aleatoriamente
+    # La computadora elige una clave al azar y crea ese Pokemon.
     seleccion_pokemon = random.choice(list(CATALOGO_POKEMON.keys()))
     pokemon = CrearPokemon.nuevoPokemon(seleccion_pokemon)
     print(f"La computadora selecciono a {pokemon.nombre}")
     return pokemon
 
-#JUGADOR VS JUGADOR
+
+# Prepara un combate donde juegan dos personas.
 def iniciar_jugador_vs_jugador():
     nombre_jugador_uno = input("Ingrese el nombre del jugador 1: ")
     nombre_jugador_dos = input("Ingrese el nombre del jugador 2: ")
@@ -41,7 +43,8 @@ def iniciar_jugador_vs_jugador():
     combate = JugadorVsJugador(jugador_uno, jugador_dos)
     combate.iniciar_combate()
 
-#JUGADOR VS COMPUTADORA
+
+# Prepara un combate entre una persona y la computadora.
 def iniciar_jugador_vs_computadora():
     nombre_jugador = input("Ingrese el nombre del jugador: ")
 
@@ -58,6 +61,7 @@ def iniciar_jugador_vs_computadora():
 
 
 def main():
+    # Muestra el menu principal y redirige al modo elegido.
     print("El programa ha iniciado")
 
     opcion = Menu.mostrar_menu()

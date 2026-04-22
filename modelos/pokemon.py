@@ -2,9 +2,11 @@ from abc import ABC, abstractmethod
 
 
 class Pokemon(ABC):
+    # Daño base usado por todos los Pokemon al atacar.
     DANIO_BASE = 10
 
     def __init__(self, nombre, tipo_pokemon, hp_maximo, energia_maxima):
+        # Se inicializan los valores principales del Pokemon.
         self.__nombre = nombre
         self.__tipo_pokemon = tipo_pokemon
         self.__hp_maximo = hp_maximo
@@ -73,13 +75,14 @@ class Pokemon(ABC):
         self.energia_actual = nueva_energia
 
     def recibir_danio(self, cantidad_danio):
+        # Si estaba defendiendo, el siguiente golpe hace menos daño.
         if self.__defensa_activa:
-            #esto divide el daño en 2 pero nunca por menor que 1, y se convierte siempre a un entero, y entre el 1 y el resultado envía el máximo
             cantidad_danio = max(1, int(cantidad_danio / 2))
             self.__defensa_activa = False
         self.hp_actual -= cantidad_danio
 
     def consumir_energia(self, cantidad_energia):
+        # Si no tiene energia suficiente, la accion no se puede ejecutar.
         if self.__energia_actual < cantidad_energia:
             return False
 
@@ -93,15 +96,18 @@ class Pokemon(ABC):
         self.__defensa_activa = True
 
     def paralizar(self):
+        # La paralisis hace perder el siguiente turno.
         self.__turnos_paralizado = 1
 
     def puede_actuar(self):
+        # Si sigue paralizado, pierde este turno y luego se libera.
         if self.__turnos_paralizado > 0:
             self.__turnos_paralizado -= 1
             return False
         return True
 
     def calcular_danio(self, multiplicador):
+        # Ajusta el daño segun la ventaja o desventaja del ataque.
         return int(self.DANIO_BASE * multiplicador)
 
     @abstractmethod
